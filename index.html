@@ -1,0 +1,195 @@
+
+<!-- saved from url=(0057)file:///Users/reynoldsluke08/Desktop/GA/Memory%20Game.htm -->
+<html><!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by Essexrambler (http://jsbin.com/debiwo/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="robots" content="noindex">
+  
+    <title>Memory Game</title>
+  
+<style id="jsbin-css">
+.card{
+  height: 200px;
+  width: 150px;
+  border: 1px solid black;
+  background-color:yellow;
+  border-radius: 10px;
+  float: left;
+  margin:8%
+}
+
+h1 {
+  color:rgb(2, 132, 130);
+  text-align: center
+}
+
+h2 {
+  color: #ffd700;
+  text-align: center
+}
+
+p{
+  text-align: center
+}
+
+.name {
+  color: #ff0000;
+}
+
+.board {
+  height: 80%;
+  width: 50%;
+  display: inline-block;
+}
+
+nav {
+  background-color: #808080;
+      }
+
+a {
+        background-color: #ffbf00;
+        color: white;
+        text-decoration: none;
+        display: block;
+        float: left;
+        padding: 35px;
+      }
+
+a:hover {
+        background-color: #ee5f3c;
+      }
+
+.clearfix:after {
+        visibility: hidden;
+        display: block;
+        content: " ";
+        clear: both;
+        height: 0;
+        font-size: 0;
+      }
+
+footer {
+  background-color: #808080;
+  text-align: center;
+}
+
+
+/* added to keep the card images from imgur a decent size */
+img {
+	height: 200px;
+  width: 150px;
+}
+</style>
+</head>
+
+    <body><nav class="clearfix">
+      <a href="https://output.jsbin.com/debiwo/1#">Instructions</a>
+      <a href="https://output.jsbin.com/debiwo/1#">Game</a>
+    </nav>
+	
+	
+  
+  <h1>Memory Game</h1>
+  <h2>Instructions</h2>
+    <p>
+      Concentration, also known as Match Match, Memory, Pelmanism, Shinkei-suijaku, Pexeso or simply           Pairs, is a card game in which all of the cards are laid face down on a surface and two cards are         flipped face up over each turn. The object of the game is to turn over pairs of matching cards.
+    </p>
+  
+  <div id="game-board" class="board">
+	<div class="card" data-card="queen"></div><div class="card" data-card="queen"></div><div class="card" data-card="king"></div><div class="card" data-card="king"></div></div>
+  
+  <footer>
+		 Created and Designed with ♥ by <span class="Luke">GA</span>
+  </footer>
+ 
+		<script async="" src="./Memory Game_files/analytics.js"></script><script type="text/javascript" async="" src="./Memory Game_files/linkid.js"></script><script async="" src="./Memory Game_files/analytics(1).js"></script><script src="./Memory Game_files/main.js"></script>
+  <script>
+// represents the cards of the game
+var cards = ['queen', 'queen', 'king', 'king'];
+
+// represents the cards in play
+var cardsInPlay = [];
+
+
+
+// find the board and set it to a variable
+// so that we can add cards to it
+var board = document.getElementById('game-board');
+// function that will create your board
+function createBoard() {
+  // loop through your cards array to create card elements for your board
+  for (var i=0; i<cards.length; i++) {
+    // create a div element which will be used as a card
+    var cardElement = document.createElement('div');
+    // add a class to the card element which will help link styling
+    cardElement.className = 'card';
+		// this will set the card's 'data-card' to be the element of the array
+    // data- attributes are meant to store data about an element that is not tied to a style.
+    // i.e. "king"
+    cardElement.setAttribute('data-card', cards[i]);
+		// when a card is clicked the function isTwoCards will be executed
+    cardElement.addEventListener('click', isTwoCards);
+
+    // append the card to the board
+    board.appendChild(cardElement);
+    board.appendChild(cardElement);
+  }
+
+}
+//checks to see if there are cards in play
+function isTwoCards() {
+  // add card to array of cards being viewed
+  // 'this' is not covered in the pre-work but
+  // for now, just know it gives you access to the cardElement you click on
+  cardsInPlay.push(this.getAttribute('data-card'));
+	// show the card's image
+	console.log(this.getAttribute('data-card'));
+	if (this.getAttribute('data-card') === 'king') {
+		this.innerHTML = "<img src='http://i.imgur.com/bnuv5Im.png'>"; // king
+	} else {
+		this.innerHTML = "<img src='http://i.imgur.com/v6buNt2.png'>"; //queen
+	}
+  // if you have two cards in play check for a match
+  if (cardsInPlay.length === 2) {
+    // pass the cardsInPlay as an argument to isMatch function
+    isMatch(cardsInPlay);
+    // clear cards in play array for next try
+    cardsInPlay = [];
+  }
+}
+
+function isMatch(cards) {
+  // alert winning message
+  if (cards[0] === cards[1]) {
+    alert("You found a match!");
+  } else {
+    alert("Sorry, try again.");
+
+  }
+}
+
+createBoard();
+</script>
+<script src="./Memory Game_files/edit.js"></script>
+<script>jsbinShowEdit && jsbinShowEdit({"static":"https://static.jsbin.com","root":"https://jsbin.com"});</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-1656750-34', 'auto');
+ga('require', 'linkid', 'linkid.js');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+
+</script>
+
+
+
+
+<a id="edit-with-js-bin" href="https://jsbin.com/debiwo/1/edit" style="top: 0px;">Edit in JS Bin <img src="./Memory Game_files/favicon.png" width="16" height="16"></a><link rel="stylesheet" href="./Memory Game_files/edit.css"></body><a id="edit-with-js-bin" href="https://jsbin.com/Users/reynoldsluke08/Desktop/GA/Memory%20Game.htm/edit" style="top: -60px;">Edit in JS Bin <img src="./Memory Game_files/favicon(1).png" width="16" height="16"></a><link rel="stylesheet" href="./Memory Game_files/edit(1).css"></html>
